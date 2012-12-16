@@ -18,10 +18,7 @@ textarea {
     color: #222;
 }
 
-body {
-    font-size: 1em;
-    line-height: 1.4;
-}
+
 
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
@@ -196,25 +193,52 @@ textarea {
    ========================================================================== */
 
 .blogs a {
-	color: #597800;
-	font-weight: bold;
+	color: #E60000;
 }
 .twitter a {
-	color: #0057AE;
-	font-weight: bold;
+	/*color: #597800;*/
+	color: #E60000;
 }
 .news a {
-	color: #CA0000;
+	/*color: #CA0000;*/
+	color: #0057AE;
+	
 }
-.secao a {
-	font-weight: bold;
+.secao {
+	
 }
 .secao  h2{
 	border-bottom: 4px solid #333;
 	margin-right: 2px;
 	margin-left: 2px;
 }
+.topo{
+	
+}
+#logo{
+	display: inline;
+	background-image: url('../img/logo.png');
+	height: 44px;
+	width: 74px;
+	position: absolute;
+}
+#anuncie{
+	display: block;
+	margin-left: 74px;
+	height: 44px;
+	border: 1px dotted gray;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 44px;
+}
 
+#anuncie a{
+	/*color: #CA0000;*/
+	color: #597800;
+}
+a {
+	font-weight: bold;
+}
 a:link, a:visited, a:active {
 	text-decoration: none;
 }
@@ -245,7 +269,17 @@ a:hover {
 		float: right;
 		width: 25%;
 	}
+	body {
+		font-size: 1em;
+		line-height: 1.4;
+	}
 
+}
+@media screen and (max-width: 56em) {
+	body {
+		font-size: 0.8em;
+		line-height: 1.2;
+	}
 }
 
 /* ==========================================================================
