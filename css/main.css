@@ -273,12 +273,18 @@ a:hover {
 		font-size: 1em;
 		line-height: 1.4;
 	}
+	#forkme {
+		display: inline;
+	}
 
 }
 @media screen and (max-width: 56em) {
 	body {
 		font-size: 0.8em;
 		line-height: 1.2;
+	}
+	#forkme {
+		display: none;
 	}
 }
 
