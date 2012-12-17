@@ -245,7 +245,9 @@ a:link, a:visited, a:active {
 a:hover {
 	text-decoration: underline;
 }
-
+#analytics{
+	display:none;
+}
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    Theses examples override the primary ('mobile first') styles.
