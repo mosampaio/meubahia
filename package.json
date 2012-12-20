@@ -2,11 +2,11 @@
   "name": "application-name",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "start": "meubahia"
-  },
   "dependencies": {
     "mongoskin": "0.4.4",
 	"express": "3.0.4"
+  },
+  "engines": {
+    "node": "0.8.16"
   }
 }
