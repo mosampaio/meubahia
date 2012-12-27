@@ -1,3 +1,5 @@
+//https://gist.github.com/442463
+
 var mongo = require('mongoskin');
 var conn = mongo.db('mongodb://meubahia:123456@linus.mongohq.com:10074/meubahia', {safe:true});
 var http = require('http');
