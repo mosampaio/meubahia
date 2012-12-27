@@ -16,15 +16,14 @@ var insertCallback = function(response) {
     str += chunk;
   });
 
-  //the whole response has been recieved, so we just print it out here
   response.on('end', function () {
-	var data = JSON.parse(str);
+    var data = JSON.parse(str);
 	var tweets = [];
 	for (var i in data.results) {
 		tweets.push({
 			from_user: data.results[i].from_user,
 			from_user_name: data.results[i].from_user_name,
-			text: data.results[i].text
+			text: linkfy(data.results[i])
 		});
 	}
 	
@@ -32,6 +31,17 @@ var insertCallback = function(response) {
 		if (err) console.dir(err);
 	});
   });
+}
+
+var linkfy = function(result) {
+    var text = result.text;
+    for (var i in result.hashtags) {
+        var hashtag = result.entities.hashtags[i];
+        var sub = result.text.substring(hashtag.indices[0], hashtag.indices[1]); 
+        var newsub = '<a href="http://twitter.com/#search?q=%23' + hashtag.text + '">' + sub + '</a>'; 
+        text = result.text.substring(0, hashtag.indices[0]) + newsub + result.text.substring(hashtag.indices[1], result.text.lenght); 
+    }
+    return text;
 }
 
 exports.recache = function() { 
@@ -47,4 +57,3 @@ exports.recache = function() {
 		http.request(options, insertCallback).end();
 	});
 }
-
