@@ -23,7 +23,7 @@ var insertCallback = function(response) {
 		tweets.push({
 			from_user: data.results[i].from_user,
 			from_user_name: data.results[i].from_user_name,
-			text: linkfy(data.results[i])
+			text: data.results[i].text
 		});
 	}
 	
