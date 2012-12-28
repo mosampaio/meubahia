@@ -1,6 +1,4 @@
-
-var mongo = require('mongoskin');
-var conn = mongo.db('mongodb://meubahia:123456@linus.mongohq.com:10074/meubahia', {safe:true});
+var conn = require('./conf').conn;
 var http = require('http');
 
 var options = {
@@ -34,7 +32,9 @@ var insertCallback = function(response) {
 	});
   });
 }
-exports.recache = function() { 
+
+//====== EXPORTS ======
+exports.recache = function(req, res) { 
 	conn.collection('tweets').find().toArray(function(err, items){
 		if (err) { console.dir(err); }
 		var tweets = [];
@@ -45,5 +45,13 @@ exports.recache = function() {
 		}
 		
 		http.request(options, insertCallback).end();
+	});
+	
+	res.send(200, 'OK');
+}
+
+exports.items = function(req, res) {
+	conn.collection('tweets').find().toArray(function(err, items){
+		res.send(items);
 	});
 }

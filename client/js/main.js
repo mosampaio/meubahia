@@ -8,9 +8,13 @@ function parseRSS(url, callback) {
     });
 }
 function loadNews() {
-	var url = 'http://globoesporte.globo.com/servico/semantica/editorias/plantao/futebol/times/bahia/feed.rss';
-	parseRSS(url, function(data){
-		addParagraphs(data.link, data.entries, '.news');
+	var urls = [
+	'http://globoesporte.globo.com/servico/semantica/editorias/plantao/futebol/times/bahia/feed.rss'
+	]
+	$.each(urls, function(index, url) { 
+		parseRSS(url, function(data){
+			addParagraphs(data.link, data.entries.slice(0,10), '.news');
+		});
 	});
 }
 function loadTwitter() {
