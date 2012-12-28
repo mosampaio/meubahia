@@ -21,13 +21,13 @@ function loadTwitter() {
 	$.getJSON(document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/tweets/', 
 		function(data) { 
 			$.each(data, function(index, value) { 
-				$('<p><a target="_blank" href="http://twitter.com/'+value.from_user+'" title="'+value.from_user_name+'"">@'+value.from_user+'</a> '+linkify_text(value)+'</p><hr/>').appendTo('.twitter');
+				$('<p><a href="http://twitter.com/'+value.from_user+'" title="'+value.from_user_name+'"">@'+value.from_user+'</a> '+linkify_text(value)+'</p><hr/>').appendTo('.twitter');
 			});
 		}
 	);
 }
 function loadBlogs() {
-	var urls = [
+	/*var urls = [
 		'http://www.bbmp.com.br/?feed=rss2', 
 		'http://globoesporte.globo.com/platb/ba-torcedor-bahia/feed/',
 		'http://www.semprebahia.com/feed/atom/',
@@ -37,12 +37,19 @@ function loadBlogs() {
 		parseRSS(url, function(data){
 			addParagraphs(data.link, data.entries.slice(0,2), '.blogs');
 		});
-	});
+	});*/
+    $.getJSON(document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/blogs/', 
+    	function(data) { 
+			$.each(data, function(index, value) { 
+				$('<p><a href="'+value.link+'" title="'+value.title+'">' + value.contentSnippet + '</p><hr/>').appendTo('.blogs');
+			});
+		}
+	);
 }
 function addParagraphs(source, entries, mainCssClass) {
 	$.each(entries, function(index, entry) { 
 		if (entry.contentSnippet.length > 0) {
-			$('<p><a target="_blank" href="'+entry.link+'" title="'+source+' - '+entry.title+'">' + entry.contentSnippet + '</p><hr/>').appendTo(mainCssClass);
+			$('<p><a href="'+entry.link+'" title="'+source+' - '+entry.title+'">' + entry.contentSnippet + '</p><hr/>').appendTo(mainCssClass);
 		}
 	});
 }
