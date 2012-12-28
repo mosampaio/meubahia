@@ -100,22 +100,21 @@ exports.doRecache = function(req, res) {
     	if (err) { console.dir(err); }
 		var blogs = [];
 		for (var i in items) {
-			var json = items[i].session;
 			blogs.push(items[i]._id);
 			conn.collection('blogs').remove({_id: items[i]._id}, function(err, result) { if (err) console.dir(err);} );
 		}
         
         var urls = [
-        	'http://www.bbmp.com.br/?feed=rss2', 
-    		'http://globoesporte.globo.com/platb/ba-torcedor-bahia/feed/',
-    		'http://www.semprebahia.com/feed/atom/',
-    		'http://feeds.feedburner.com/bahiaco'
+        	{q:'http://www.bbmp.com.br/?feed=rss2', num:2}, 
+    		{q:'http://globoesporte.globo.com/platb/ba-torcedor-bahia/feed/', num:2}, 
+    		{q:'http://www.semprebahia.com/feed/atom/', num:2}, 
+    		{q:'http://feeds.feedburner.com/bahiaco', num:2}
     	];
         
         for (var i in urls) {
     		http.request({
               host: 'ajax.googleapis.com',
-              path: '/ajax/services/feed/load?v=1.0&num=2&q=' + encodeURIComponent(urls[i]),
+              path: '/ajax/services/feed/load?v=1.0&num='+urls[i].num+'&q=' + encodeURIComponent(urls[i].q),
               accep: 'application/json'
             }, blogsCallback).end();
         }
@@ -126,13 +125,14 @@ exports.doRecache = function(req, res) {
         if (err) { console.dir(err); }
 		var blogs = [];
 		for (var i in items) {
-			var json = items[i].session;
 			blogs.push(items[i]._id);
 			conn.collection('news').remove({_id: items[i]._id}, function(err, result) { if (err) console.dir(err);} );
 		}
         
         var urls = [
-        	{q: 'http://globoesporte.globo.com/servico/semantica/editorias/plantao/futebol/times/bahia/feed.rss', num: 10}
+        	{q:'http://globoesporte.globo.com/servico/semantica/editorias/plantao/futebol/times/bahia/feed.rss', num: 7},
+            //{q:'http://esporte.uol.com.br/futebol/clubes/bahia.xml', num: 3},
+            {q:'http://www.semprebahia.com/feed/atom/', num:3}
     	];
         
         for (var i in urls) {

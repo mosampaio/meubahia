@@ -1,1 +1,0 @@
-{"ts":1356692522165,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"var mongo = require('mongoskin');\nvar urldb = 'mongodb://meubahia:123456@linus.mongohq.com:10074/meubahia';\nvar conn = mongo.db(urldb, {safe:true});\n\nexports.conn = conn;"]],"start1":0,"start2":0,"length1":0,"length2":170}]],"length":170}

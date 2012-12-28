@@ -1,1 +1,0 @@
-{"ts":1356716783673,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"var mongo = require('mongoskin');\nvar conn = mongo.db('mongodb://meubahia:123456@linus.mongohq.com:10074/meubahia', {safe:true});\nconn.collection('tweets').find().toArray(function(err, items){\n\tconsole.dir(items);\n});\n"]],"start1":0,"start2":0,"length1":0,"length2":218}]],"length":218}
