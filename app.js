@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var news = require('./server/controller/news');
 var tweets = require('./server/controller/tweets');
 var blogs = require('./server/controller/blogs');
 var recache = require('./server/controller/recache');
@@ -9,6 +10,7 @@ app.use(express.json());
 app.use(express.static(__dirname + '/client'));
 
 //routes
+app.get('/news/', news.items);
 app.get('/tweets/', tweets.items);
 app.get('/blogs/', blogs.items);
 app.get('/recache/tweets/', recache.doRecache);

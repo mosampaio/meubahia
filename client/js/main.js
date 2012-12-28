@@ -8,14 +8,13 @@ function parseRSS(url, callback) {
     });
 }
 function loadNews() {
-	var urls = [
-	'http://globoesporte.globo.com/servico/semantica/editorias/plantao/futebol/times/bahia/feed.rss'
-	]
-	$.each(urls, function(index, url) { 
-		parseRSS(url, function(data){
-			addParagraphs(data.link, data.entries.slice(0,10), '.news');
-		});
-	});
+    $.getJSON(document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/news/', 
+        function(data) { 
+			$.each(data, function(index, value) { 
+				$('<p><a href="'+value.link+'" title="'+value.title+'">' + value.contentSnippet + '</p><hr/>').appendTo('.news');
+			});
+		}
+	);
 }
 function loadTwitter() {
 	$.getJSON(document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/tweets/', 
@@ -27,17 +26,6 @@ function loadTwitter() {
 	);
 }
 function loadBlogs() {
-	/*var urls = [
-		'http://www.bbmp.com.br/?feed=rss2', 
-		'http://globoesporte.globo.com/platb/ba-torcedor-bahia/feed/',
-		'http://www.semprebahia.com/feed/atom/',
-		'http://feeds.feedburner.com/bahiaco'
-	];
-	$.each(urls, function(index, url) { 
-		parseRSS(url, function(data){
-			addParagraphs(data.link, data.entries.slice(0,2), '.blogs');
-		});
-	});*/
     $.getJSON(document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/blogs/', 
     	function(data) { 
 			$.each(data, function(index, value) { 
@@ -45,13 +33,6 @@ function loadBlogs() {
 			});
 		}
 	);
-}
-function addParagraphs(source, entries, mainCssClass) {
-	$.each(entries, function(index, entry) { 
-		if (entry.contentSnippet.length > 0) {
-			$('<p><a href="'+entry.link+'" title="'+source+' - '+entry.title+'">' + entry.contentSnippet + '</p><hr/>').appendTo(mainCssClass);
-		}
-	});
 }
 
 function escapeHTML(text) {

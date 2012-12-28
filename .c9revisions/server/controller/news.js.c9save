@@ -1,0 +1,2 @@
+{"ts":1356717992497,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1356718000238,"patch":[[{"diffs":[[1,"var conn = require('./../conf').conn;\n\nexports.items = function(req, res) {\n    conn.collection('news').find().toArray(function(err, items){\n    \tres.send(items);\n\t});\n}"]],"start1":0,"start2":0,"length1":0,"length2":169}]],"length":169,"saved":false}
