@@ -13,20 +13,14 @@ app.get('/tweets/', function(req, res){
 		res.send(items);
 	});
 });
-app.get('/recache/tweets/', function(req, res){
+function recache(req, res) {
 	tweets.recache();
 	res.send(200, 'OK');
-});
-app.get('/recache/news/', function(req, res){
-	res.send(200, 'OK');
-});
-app.get('/recache/blogs/', function(req, res){
-	res.send(200, 'OK');
-});
-
+}
+app.get('/recache/tweets/', recache);
+app.get('/recache/', recache);
 app.use('/static', express.static(__dirname + '/public'));
 
-//app.listen(3000);
 var port = process.env.PORT || 5000;
 var ip = process.env.IP || '0.0.0.0';
 app.listen(port, ip, function() {
