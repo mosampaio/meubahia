@@ -4,7 +4,7 @@ var bridge = require('./server/controller/bridge');
 var recache = require('./server/controller/recache');
 
 //config
-app.use(express.logger());
+//app.use(express.logger());
 app.use(express.compress());
 app.use(express.methodOverride());
 app.use(express.bodyParser());
