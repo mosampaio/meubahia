@@ -8,7 +8,7 @@ function parseRSS(url, callback) {
     });
 }
 function loadNews() {
-    $.getJSON(document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/news/', 
+    $.getJSON(document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/bridge/news/', 
         function(data) { 
 			$.each(data, function(index, value) { 
 				$('<p><a href="'+value.link+'" title="'+value.title+'">' + value.contentSnippet + '</p><hr/>').appendTo('.news');
@@ -17,7 +17,7 @@ function loadNews() {
 	);
 }
 function loadTwitter() {
-	$.getJSON(document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/tweets/', 
+	$.getJSON(document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/bridge/tweets/', 
 		function(data) { 
 			$.each(data, function(index, value) { 
 				$('<p><a href="http://twitter.com/'+value.from_user+'" title="'+value.from_user_name+'"">@'+value.from_user+'</a> '+linkify_text(value)+'</p><hr/>').appendTo('.twitter');
@@ -26,7 +26,7 @@ function loadTwitter() {
 	);
 }
 function loadBlogs() {
-    $.getJSON(document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/blogs/', 
+    $.getJSON(document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/bridge/blogs/', 
     	function(data) { 
 			$.each(data, function(index, value) { 
 				$('<p><a href="'+value.link+'" title="'+value.title+'">' + value.contentSnippet + '</p><hr/>').appendTo('.blogs');
